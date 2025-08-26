@@ -12,10 +12,12 @@ class Touriste:
     def supprimerTouriste(self, id):
         req = "DELETE FROM touriste WHERE id = %s"
         self.db.execute(req, id)
+        print("Donnée supprimer ")
 
     def modifTouriste(self, nom, prenom, age, id):
         reqModif = "UPDATE touriste SET nom = %s, prenom = %s, age = %s WHERE id = %s"
         self.db.execute(reqModif, nom, prenom, age, id)
+        print("Modification réussi ")
 
     def listTouriste(self):
         query = "SELECT Touriste.id, Touriste.nom, Touriste.prenom, Touriste.age, Groupe.nom_groupe FROM Touriste LEFT JOIN Groupe ON Touriste.groupe_id = Groupe.id"

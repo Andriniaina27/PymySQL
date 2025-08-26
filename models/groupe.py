@@ -12,10 +12,12 @@ class Groupe:
     def supprGroupe(self, id):
         req = "DELETE FROM groupe WHERE id = %s"
         self.db.execute(req, id)
+        print("Donnée supprimer ")
 
     def modifGroupe(self, nomG, id):
         modif = "UPDATE groupe SET nom_groupe = %s WHERE id = %s"
         self.db.execute(modif, nomG, id)
+        print("Modification réussi ")
 
     def listGroupe(self):
         query = "SELECT * FROM Groupe"

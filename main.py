@@ -35,7 +35,6 @@ def main():
                         c = input("Oui(O) ou Non(N) : ")
                         if c == "O":
                             grp.supprGroupe(id)
-                            print("Donnée supprimer ")
                         else:
                             pass
                     case "4":
@@ -46,7 +45,6 @@ def main():
                         c = input("Oui(O) ou Non(N) : ")
                         if c == "O":
                             grp.modifGroupe(nomG, id)
-                            print("Modification réussi ")
                         else:
                             pass
                         
@@ -76,7 +74,6 @@ def main():
                         c = input("Oui(O) ou Non(N) : ")
                         if c == "O":
                             touriste.supprimerTouriste(id)
-                            print("Donnée supprimer ")
                         else:
                             pass
                         
@@ -90,7 +87,6 @@ def main():
                         c = input("Oui(O) ou Non(N) : ")
                         if c == "O":
                             touriste.modifTouriste(nom, prenom, age, id)
-                            print("Modification réussi ")
                         else:
                             pass
                     case "_":
