@@ -8,14 +8,15 @@ class Database(object):
             Database.__instance = super(Database, cls).__new__(cls)
         return Database.__instance
     
-    def __init__(self, host="localhost", user="root", password="", database="voyage"):
-        self.connexion = pymysql.connect(
-            host=host,
-            user=user,
-            password=password,
-            database=database
-        )
-        self.cursor = self.connexion.cursor()
+    def __init__(self):
+        if not hasattr(self, "connexion"):
+            self.connexion = pymysql.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="voyage"
+            )
+            self.cursor = self.connexion.cursor()
 
     def execute(self, query, *params):
         if self.cursor:
@@ -28,7 +29,6 @@ class Database(object):
             return self.cursor.fetchall()
 
     def __del__(self):
-        if self.cursor:
+        if self.cursor is not None:
             self.cursor.close()
-        if self.connexion: 
             self.connexion.close()
