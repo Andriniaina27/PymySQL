@@ -1,13 +1,14 @@
 from models.groupe import Groupe
 from models.touriste import Touriste
+from models.database import Database
 
-def main():
-    
-    grp = Groupe()
-    touriste = Touriste()
+# def main():
+base = Database()
+# grp = Groupe()
+touriste = Touriste(1, base)
 
-    tour1 = touriste(1)
-    print(tour1)
+# tour1 = touriste(1, base)
+# print(tour1)
 
     # while True:
     #     print("\n--- MENU PRINCIPAL ---")
@@ -102,5 +103,5 @@ def main():
 
     # print("Fin du programme....")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

@@ -1,6 +1,7 @@
+from abc import ABC, abstractmethod
 import pymysql
 
-class Database(object):
+class Database(ABC):
     __instance = None
 
     def __new__(cls):
@@ -18,15 +19,38 @@ class Database(object):
             )
             self.cursor = self.connexion.cursor()
 
-    def execute(self, query, *params):
-        if self.cursor:
-            self.cursor.execute(query, params)
-            self.connexion.commit()
+    @abstractmethod
 
-    def fetchall(self, query, *params):
-        if self.cursor:
-            self.cursor.execute(query, params)
-            return self.cursor.fetchall()
+    @classmethod
+    def getAll(cls):
+        pass
+
+    @classmethod
+    def getById(cls):
+        pass
+
+    @classmethod
+    def insert(cls):
+        pass
+
+    @classmethod
+    def update(cls):
+        pass
+
+    @classmethod
+    def delete(cls):
+        pass
+
+
+    # def execute(self, query, *params):
+    #     if self.cursor:
+    #         self.cursor.execute(query, params)
+    #         self.connexion.commit()
+
+    # def fetchall(self, query, *params):
+    #     if self.cursor:
+    #         self.cursor.execute(query, params)
+    #         return self.cursor.fetchall()
 
     def __del__(self):
         if self.cursor is not None:
