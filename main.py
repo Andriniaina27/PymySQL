@@ -11,11 +11,11 @@ tr1 = Touriste(1)
 
 
 
-# tr = Touriste.getAll()
-# print(tr)
+tr = Touriste.getAll()
+print(tr)
 
-# count = Touriste.count()
-# print(count)
+count = Touriste.count()
+print(count)
 # print(grp.)
 # # def main():
 # base = Database()
