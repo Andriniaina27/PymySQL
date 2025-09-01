@@ -1,42 +1,48 @@
-from .database import Database
+from .model import Model
 
-class Groupe(Database):
-    __base = Database()
+class Groupe(Model):
     def __init__(self, id):
-        self.base = Database()
         self.id = id
-        self.nom = None
+        # self.nom = None
 
-        self.base
-        self.base.cursor.execute("SELECT nom_groupe FROM groupe WHERE id = ", (self.id,))
-        dico = self.base.cursor.fetchone()
+        # self.base
+        # self.base.cursor.execute("SELECT nom_groupe FROM groupe WHERE id = ", (self.id,))
+    
+        dico = Groupe.getById(id)
 
-        if dico:
-            self.nomG = dico["nom_groupe"]
+        # if dico:
+        dict = dico
+        print(dict)
+        # self.nomG = dico["nomG"]
+        # self.membres = dict()
 
-    def __str__(self):
-        chaine = f"ID : {self.id}\n Nom : {self.nom}"
-        return chaine
+    # def __str__(self):
+    #     chaine = f"ID : {self.id}\n Nom : {self.nom}"
+    #     return chaine
     
-    @classmethod
-    def getAll(cls):
-        cls.__base.cursor.execute("SELECT * FROM groupe")
-        return cls.__base.cursor.fetchall()
+
+    # def getAll(self):
+    #     dico = Groupe.getAll()
+    #     print(dico)
+    # @classmethod
+    # def getAll(cls):
+    #     cls.__base.cursor.execute("SELECT * FROM groupe")
+    #     return cls.__base.cursor.fetchall()
     
-    @classmethod
-    def getById(cls, id):
-        cls.__base.cursor.execute("SELECT * FROM groupe WHERE id = %s", (id,))
-        return cls.__base.cursor.fetchone()
+    # @classmethod
+    # def getById(cls, id):
+    #     cls.__base.cursor.execute("SELECT * FROM groupe WHERE id = %s", (id,))
+    #     return cls.__base.cursor.fetchone()
     
-    @classmethod
-    def insert(cls, nom):
-        cls.__base.cursor.execute("INSERT INTO groupe VALUES(NULL, %s)", (nom))
-        cls.__base.connexion.commit()
+    # @classmethod
+    # def insert(cls, nom):
+    #     cls.__base.cursor.execute("INSERT INTO groupe VALUES(NULL, %s)", (nom))
+    #     cls.__base.connexion.commit()
     
-    @classmethod
-    def delete(cls,nom, id):
-        cls.__base.cursor.execute("UPDATE groupe SET nom_groupe = %s WHERE id = %s",(nom,id,))
-        cls.__base.connexion.commit()
+    # @classmethod
+    # def delete(cls,nom, id):
+    #     cls.__base.cursor.execute("UPDATE groupe SET nom_groupe = %s WHERE id = %s",(nom,id,))
+    #     cls.__base.connexion.commit()
 
     # def ajoutGroupe(self, nomG):
     #     requete = "INSERT INTO groupe VALUES(NULL, %s)"

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import pymysql
 
-class Database(ABC):
+class Database():
     __instance = None
 
     def __new__(cls):
@@ -19,27 +19,27 @@ class Database(ABC):
             )
             self.cursor = self.connexion.cursor()
 
-    @abstractmethod
+    # @abstractmethod
 
-    @classmethod
-    def getAll(cls):
-        pass
+    # @classmethod
+    # def getAll(cls):
+    #     pass
 
-    @classmethod
-    def getById(cls):
-        pass
+    # @classmethod
+    # def getById(cls):
+    #     pass
 
-    @classmethod
-    def insert(cls):
-        pass
+    # @classmethod
+    # def insert(cls):
+    #     pass
 
-    @classmethod
-    def update(cls):
-        pass
+    # @classmethod
+    # def update(cls):
+    #     pass
 
-    @classmethod
-    def delete(cls):
-        pass
+    # @classmethod
+    # def delete(cls):
+    #     pass
 
 
     # def execute(self, query, *params):

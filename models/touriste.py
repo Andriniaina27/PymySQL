@@ -1,43 +1,53 @@
-from .database import Database
+from .model import Model
 
-class Touriste(Database):
-    __base = Database()
-    def __init__(self, id, base = Database):
+class Touriste(Model):
+    def __init__(self, id):
         # self.db = Database()
         self.numero = id
-        self.base = base
+        # self.base = base
         self.nom = None
         self.id_groupe = None
 
-        self.base.cursor.execute("SELECT nom, groupe_id FROM touriste WHERE id = ?", (self.numero,))
-        dico = self.base.cursor.fetchone()
-        self.nom = dico["nom"]  
-        self.id_groupe = dico["groupe_id"]
+        dico = Touriste.getById(id)
+        # self.base.cursor.execute("SELECT nom, groupe_id FROM touriste WHERE id = ?", (self.numero,))
+        # dico = self.base.cursor.fetchone()
+        print(dico)
+    
+    def all(self):
+        get = Touriste.getAll() 
+        for x in get:
+            print(x)
 
-    @classmethod
-    def getAll(cls):
-        cls.__base.cursor.execute("SELECT * FROM touriste")
-        return cls.__base.cursor.fetchall()
-    
-    @classmethod
-    def getById(cls, numero):
-        cls.__base.cursor.execute("SELECT * FROM touriste WHERE id = ?",(numero,))
-        return cls.__base.cursor.fetchone()
-    
-    @classmethod
-    def insert(cls, nom, prenom, age, groupe_id):
-        cls.__base.cursor.execute("INSERT INTO touriste VALUES(NULL, %s, %s, %s, %s)", (nom, prenom, age, groupe_id))
-        cls.__base.connexion.commit()
+    def somme(self):
+        somme = Touriste.count()
+        print(somme)
+        # self.nom = dico["nom"]  
+        # self.id_groupe = dico["groupe_id"]
 
-    @classmethod
-    def update(cls, nom, prenom, age, groupe_id, id):
-        cls.__base.cursor.execute("UPDATE touriste SET nom = %s, prenom = %s, age = %s, groupe_id = %s WHERE id = %s",(nom, prenom, age, groupe_id, id))
-        cls.__base.connexion.commit()
+    # @classmethod
+    # def getAll(cls):
+    #     cls.__base.cursor.execute("SELECT * FROM touriste")
+    #     return cls.__base.cursor.fetchall()
     
-    @classmethod
-    def delete(cls, id):
-        cls.__base.cursor.execute("DELETE FROM touriste WHERE id = %s", (id,))
-        cls.__base.connexion.commit()
+    # @classmethod
+    # def getById(cls, numero):
+    #     cls.__base.cursor.execute("SELECT * FROM touriste WHERE id = ?",(numero,))
+    #     return cls.__base.cursor.fetchone()
+    
+    # @classmethod
+    # def insert(cls, nom, prenom, age, groupe_id):
+    #     cls.__base.cursor.execute("INSERT INTO touriste VALUES(NULL, %s, %s, %s, %s)", (nom, prenom, age, groupe_id))
+    #     cls.__base.connexion.commit()
+
+    # @classmethod
+    # def update(cls, nom, prenom, age, groupe_id, id):
+    #     cls.__base.cursor.execute("UPDATE touriste SET nom = %s, prenom = %s, age = %s, groupe_id = %s WHERE id = %s",(nom, prenom, age, groupe_id, id))
+    #     cls.__base.connexion.commit()
+    
+    # @classmethod
+    # def delete(cls, id):
+    #     cls.__base.cursor.execute("DELETE FROM touriste WHERE id = %s", (id,))
+    #     cls.__base.connexion.commit()
     
         
 

@@ -2,10 +2,25 @@ from models.groupe import Groupe
 from models.touriste import Touriste
 from models.database import Database
 
-# def main():
-base = Database()
+       
+
+grp1 = Groupe(1)
+tr1 = Touriste(1)
 # grp = Groupe()
-touriste = Touriste(1, base)
+
+
+
+
+# tr = Touriste.getAll()
+# print(tr)
+
+# count = Touriste.count()
+# print(count)
+# print(grp.)
+# # def main():
+# base = Database()
+# # grp = Groupe()
+# touriste = Touriste(1, base)
 
 # tour1 = touriste(1, base)
 # print(tour1)
