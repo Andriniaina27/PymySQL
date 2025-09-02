@@ -1,28 +1,14 @@
 from .model import Model
 
 class Touriste(Model):
-    def __init__(self, id):
-        # self.db = Database()
-        self.numero = id
-        # self.base = base
-        self.nom = None
-        self.id_groupe = None
+    def __init__(self, id, nom, prenom, age, groupe_id):
+        self.id = id
+        self.nom = nom
+        self.prenom = prenom
+        self.age = age
+        self.groupe_id = groupe_id
 
-        dico = Touriste.getById(id)
-        # self.base.cursor.execute("SELECT nom, groupe_id FROM touriste WHERE id = ?", (self.numero,))
-        # dico = self.base.cursor.fetchone()
-        print(dico)
-    
-    def all(self):
-        get = Touriste.getAll() 
-        for x in get:
-            print(x)
-
-    def somme(self):
-        somme = Touriste.count()
-        print(somme)
-        # self.nom = dico["nom"]  
-        # self.id_groupe = dico["groupe_id"]
+        
 
     # @classmethod
     # def getAll(cls):

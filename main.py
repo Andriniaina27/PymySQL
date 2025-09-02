@@ -3,19 +3,38 @@ from models.touriste import Touriste
 from models.database import Database
 
        
+# insertTour = Touriste.insert("Andriniaina", "Luca", "20", "6")
 
-grp1 = Groupe(1)
-tr1 = Touriste(1)
+# print("Ajout avec succès")
+
+# updateTour = Touriste(6)
+# # updateTour.nom("Salohy")
+
+# print(updateTour)
+
+Touriste.update(6, ["nom", "prenom", "age", "groupe_id"], "Salohy", "Antsa", 20, 2)
+
+# grp1 = Groupe(1, "Fosa")
+# grp2 = Groupe(2, "Baobab")
+
+# print(grp1)
+# print(grp2)
+# grp1 = Groupe(1)
+# tr1 = Touriste(1)
 # grp = Groupe()
 
+# gr = Groupe.getAll()
+# print(gr)
 
+# # grp1 = Groupe.getById(2)
+# # print(grp1)
 
 
 tr = Touriste.getAll()
 print(tr)
 
-count = Touriste.count()
-print(count)
+# count = Touriste.count()
+# print(count)
 # print(grp.)
 # # def main():
 # base = Database()

@@ -1,18 +1,18 @@
 from .model import Model
 
 class Groupe(Model):
-    def __init__(self, id):
+    def __init__(self, id, nomG):
         self.id = id
-        # self.nom = None
+        self.nomG = nomG
 
         # self.base
         # self.base.cursor.execute("SELECT nom_groupe FROM groupe WHERE id = ", (self.id,))
     
-        dico = Groupe.getById(id)
+        # dico = Groupe.getById(id)
 
-        # if dico:
-        dict = dico
-        print(dict)
+        # # if dico:
+        # dict = dico
+        # print(dict)
         # self.nomG = dico["nomG"]
         # self.membres = dict()
 
@@ -21,9 +21,15 @@ class Groupe(Model):
     #     return chaine
     
 
-    # def getAll(self):
-    #     dico = Groupe.getAll()
-    #     print(dico)
+    # def all():
+    #     dict = Groupe.getAll()
+    #     for x in dict:
+    #         print(x)
+    
+    # def supprGroupe(id):
+    #     Groupe.delete(id)
+    #     print("Donnée Supprimer")
+
     # @classmethod
     # def getAll(cls):
     #     cls.__base.cursor.execute("SELECT * FROM groupe")
