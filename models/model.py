@@ -123,11 +123,24 @@ class Model():
             values = params + (id,)
             query = f"UPDATE {table} SET {param} WHERE {pk} = %s"
             base = Database()
-            # param = ", ".join([f"{col} = %s" for col in colonnes])
-            # values = params + (id,)
-            # query = f"UPDATE {table} SET {set_clause} WHERE {pk} = %s"
-            # base.cursor.execute(query, values)
             base.cursor.execute(query, values)
+            result =  base.connexion.commit()
+        except Exception as e:
+            print(e)
+            return[{}]
+        else:
+            return result
+        finally:
+            cls.__close()
+
+    @classmethod
+    def lastId(cls):
+        try:
+            table = cls.__name__.lower()
+            pk = f"id_{table}"
+            query = f"SELECT {pk} FROM {table} ORDER BY {pk} DESC LIMIT 1"
+            base = Database()
+            base.cursor.execute(query)
             result =  base.connexion.commit()
         except Exception as e:
             print(e)
