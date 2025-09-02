@@ -141,7 +141,7 @@ class Model():
             query = f"SELECT {pk} FROM {table} ORDER BY {pk} DESC LIMIT 1"
             base = Database()
             base.cursor.execute(query)
-            result =  base.connexion.commit()
+            result =  base.cursor.fetchone()
         except Exception as e:
             print(e)
             return[{}]

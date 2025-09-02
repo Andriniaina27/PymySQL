@@ -12,7 +12,7 @@ from models.database import Database
 
 # print(updateTour)
 
-Touriste.update(6, ["nom", "prenom", "age", "groupe_id"], "Salohy", "Antsa", 20, 2)
+# Touriste.update(6, ["nom", "prenom", "age", "groupe_id"], "Salohy", "Antsa", 20, 2)
 
 # grp1 = Groupe(1, "Fosa")
 # grp2 = Groupe(2, "Baobab")
@@ -30,7 +30,7 @@ Touriste.update(6, ["nom", "prenom", "age", "groupe_id"], "Salohy", "Antsa", 20,
 # # print(grp1)
 
 
-tr = Touriste.getAll()
+tr = Touriste.lastId()
 print(tr)
 
 # count = Touriste.count()
