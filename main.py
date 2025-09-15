@@ -1,11 +1,59 @@
-from models.groupe import Groupe
-from models.touriste import Touriste
-from models.database import Database
+# from models.groupe import Groupe
+# from models.touriste import Touriste
+# from models.database import Database
+from rooter import router
+async def app(scope, receive, send):
+    assert scope["type"] == 'http'
+    url = scope["path"]
 
-       
+    await router[url](scope, receive, send)
+
+# # colonne = (['nom', 'prenom', 'age'])
 
 
-       
+# # table = "touriste"
+# # pk = f"id_{table}"
+# # param = ", ".join([f"{col} = %s" for col in colonne])
+# # # values = params + (id,)
+# # query = f"UPDATE {table} SET {param} WHERE {pk} = %s"
+# # print(query)
+
+
+
+
+
+# # g = Groupe.insert("Ankoay")
+
+# async def app(scope, receive, send):
+#     assert scope['type'] == 'http'
+
+#     with open("views/index.html", "r", encoding="utf-8") as f:
+#         html = f.read()
+    
+#     await send({
+#         'type' : 'http.response.start',
+#         'status' : 200,
+#         'headers' : [(b'content-type', b'text/html')]
+#     })
+
+#     await send({
+#         'type' : 'http.response.body',
+#         'body' : html.encode()
+#     })
+
+
+
+# all = Groupe.getAll()
+# print(all)
+
+# params = ("Luca", "Amada")
+# col = ("Nom", "prenom")
+# table = "touriste"
+# param = ", ".join(f"{col} = %s" * len(params))
+# colonne = ", ".join(f"{col} = %s" for)
+# pk = f"id_{table}"
+# query = f"UPDATE {table} SET {colonne} WHERE {pk}"
+# print(query)
 # while True:
 #     print("\n--- MENU PRINCIPAL ---")
 #     print("1. Groupe")

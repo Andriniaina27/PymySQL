@@ -1,34 +1,8 @@
-# from .database import Database
-import pymysql
-
-class Database():
-    __instance = None
-
-    def __new__(cls):
-        if Database.__instance is None :
-            Database.__instance = super(Database, cls).__new__(cls)
-        return Database.__instance
-    
-    def __init__(self):
-        if not hasattr(self, "connexion"):
-            self.connexion = pymysql.connect(
-                host="localhost",
-                user="root",
-                password="",
-                database="voyage"
-            )
-            self.cursor = self.connexion.cursor()
-
-
-
-
+from models.database import Database
 class Model():
-
     @classmethod
     def __close(cls):
-        base = Database()
-        if base.cursor :
-            base.cursor.close()
+        pass
         # if base.connexion:
         #     base.connexion.close()
 
@@ -107,13 +81,37 @@ class Model():
             base.cursor.execute(query, params)
             result =  base.connexion.commit()
         except Exception as e:
-            print(e)
-            return[{}]
+            print(e) 
+            return {}
         else:
             return result
         finally:
             cls.__close()
     
+    # @classmethod
+    # def insert(cls, data : dict):
+    #     try:
+    #         base = Database()
+    #         table = cls.__name__.lower()
+    #         colonnes = tuple(data.keys())
+    #         colonnes = str(colonnes)
+    #         colonnes = colonnes.replace("'", "")
+
+    #         valeurs = tuple(data.keys())
+    #         valeurs = str(valeurs)
+    #         valeurs = valeurs.replace(",)", ")") 
+
+    #         query = f"INSERT INTO {table} VALUES(NULL, {valeurs})"
+    #         base.cursor.execute(query)
+    #         result = base.connexion.commit()
+    #     except Exception as e:
+    #         print(e)
+    #         return[{}]
+    #     else:
+    #         return result
+    #     finally:
+    #         cls.__close()
+
     @classmethod
     def update(cls, id, colonne, *params):
         try:

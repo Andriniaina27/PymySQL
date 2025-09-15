@@ -19,29 +19,7 @@ class Database():
             )
             self.cursor = self.connexion.cursor()
 
-    # @abstractmethod
-
-    # @classmethod
-    # def getAll(cls):
-    #     pass
-
-    # @classmethod
-    # def getById(cls):
-    #     pass
-
-    # @classmethod
-    # def insert(cls):
-    #     pass
-
-    # @classmethod
-    # def update(cls):
-    #     pass
-
-    # @classmethod
-    # def delete(cls):
-    #     pass
-
-
+   
     # def execute(self, query, *params):
     #     if self.cursor:
     #         self.cursor.execute(query, params)
