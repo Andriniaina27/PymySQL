@@ -1,14 +1,25 @@
 # from models.groupe import Groupe
 # from models.touriste import Touriste
 # from models.database import Database
-from rooter import router
+from rooter import Router
+from controllers.touristeController import TouristeController
+
+routeur = Router()
+routeur.add("/", TouristeController.index)
 async def app(scope, receive, send):
     assert scope["type"] == 'http'
-    url = scope["path"]
+    path = scope["path"]
+    handler = routeur.resolve(path)
 
-    await router[url](scope, receive, send)
+    if handler:
+        await handler(scope, receive, send)
+    else:
+        # await TouristeController.error404()
+        pass
+
 
 # # colonne = (['nom', 'prenom', 'age'])
+
 
 
 # # table = "touriste"

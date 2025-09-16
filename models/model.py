@@ -136,7 +136,7 @@ class Model():
         try:
             table = cls.__name__.lower()
             pk = f"id_{table}"
-            query = f"SELECT {pk} FROM {table} ORDER BY {pk} DESC LIMIT 1"
+            query = f"SELECT MAX({pk}) FROM {table}"
             base = Database()
             base.cursor.execute(query)
             result =  base.cursor.fetchone()
@@ -144,6 +144,8 @@ class Model():
             print(e)
             return[{}]
         else:
-            return result
+            if result and result[0] is not None:
+                return result[0]
+            return 0
         finally:
             cls.__close()
