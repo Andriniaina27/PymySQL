@@ -1,0 +1,257 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    // align-items: center;
+    background: linear-gradient(90deg, rgb(58, 1, 216), rgb(46, 1, 168));
+    // padding: 2rem;
+    
+    .sidebar{
+        @media(max-width : 992px){
+            left: -100%;
+            position: absolute;
+        }
+        width: auto;
+        padding: 1rem;
+        height: 100vh;
+        nav{
+             @media(max-width : 992px){
+                background: rgba(0, 0, 0, 0.753);
+                backdrop-filter: blur(10px);
+            }
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            width: 17rem;
+            height: 95%;
+            background: rgba(0, 0, 0, 0.281);
+            backdrop-filter: blur(10px);
+            // background: linear-gradient(90deg, rgb(58, 1, 216), rgb(46, 1, 168));
+            border-radius: 10px;
+            .heading{
+                width: 100%;
+                // border-bottom: rgba(255, 255, 255, 0.788) 1px solid;
+                padding: .5rem;
+                justify-content: center;
+                h3{
+                    color: white;
+                    text-align: center;
+                }
+            }
+            .navlink{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                padding-top: 1rem;
+                padding-left: 1rem;
+                padding-bottom: 1rem;
+                .nav-item{
+                    color: white;
+                    margin: 1rem 0;
+                    padding: .5rem;
+                    i{
+                        margin: 0 1rem;
+                    }
+                }
+                .nav-item:hover{
+                    color: rgb(0, 0, 0);
+                    margin: 1rem 0;
+                    background: rgb(223, 223, 223);
+                    border-radius: 20px;
+                    i{
+                        margin: 0 1rem;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar.active{
+        left: 0;
+    }
+    .content{
+        width: 100%;
+        margin-left: 17rem;
+        padding: .5rem;
+        background: rgb(223, 223, 223);
+        border-radius: 20px 0 0 20px;
+        @media(max-width : 992px){
+            margin-left: 0;
+            border-radius: 0;
+        }
+        .head{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            h3{
+                color: rgb(0, 0, 0);
+            }
+            .date{
+                h4{
+                    color: rgb(0, 0, 0);
+                }
+            }
+            .icon{
+                display: none;
+                @media(max-width : 992px){
+                    display: block;
+                }
+                i{
+                    cursor: pointer;
+                    font-size: 1.4rem;
+                }
+                i:hover{
+                    color: rgb(0, 102, 255);
+                }
+            }
+        }   
+        .container{
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            .card{
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+                padding-bottom: 1rem;
+                @media(max-width : 880px){
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 12px;
+                }
+                @media(max-width : 580px){
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                    gap: 12px;
+                }
+                .card-result{
+                    padding: 2rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background: linear-gradient(180deg, rgb(0, 102, 255), rgb(0, 67, 167));
+                    border-radius: 10px;
+                    .icon{
+                        padding: .5rem .5rem;
+                        border: 1px solid white;
+                        border-radius: 5px;
+                        div{
+                            font-size: 1rem;
+                            color: white;
+                        }
+                    }
+                    .contenu{
+                        p{
+                            color: white;
+                        }
+                        h4{
+                            color: white;
+                        }
+                    }
+                }
+                .card-result-1{
+                    padding: 2rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background: linear-gradient(180deg, rgb(255, 145, 0), rgb(175, 99, 0));
+                    border-radius: 10px;
+                    .icon{
+                        padding: .5rem .5rem;
+                        border: 1px solid white;
+                        border-radius: 5px;
+                        div{
+                            font-size: 1rem;
+                            color: white;
+                        }
+                    }
+                    .contenu{
+                        p{
+                            color: white;
+                        }
+                        h4{
+                            color: white;
+                        }
+                    }
+                }
+                .card-result-2{
+                    padding: 2rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background: linear-gradient(180deg, rgb(0, 204, 119), rgb(1, 172, 100));
+                    border-radius: 10px;
+                    .icon{
+                        padding: .5rem .5rem;
+                        border: 1px solid white;
+                        border-radius: 5px;
+                        div{
+                            font-size: 1rem;
+                            color: white;
+                        }
+                    }
+                    .contenu{
+                        p{
+                            color: white;
+                        }
+                        h4{
+                            color: white;
+                        }
+                    }
+                }
+                .card-result-3{
+                    padding: 2rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background: linear-gradient(180deg, rgb(111, 0, 255), rgb(46, 1, 207));
+                    border-radius: 10px;
+                    .icon{
+                        padding: .5rem .5rem;
+                        border: 1px solid white;
+                        border-radius: 5px;
+                        div{
+                            font-size: 1rem;
+                            color: white;
+                        }
+                    }
+                    .contenu{
+                        p{
+                            color: white;
+                        }
+                        h4{
+                            color: white;
+                        }
+                    }
+                }
+            }
+            .chart{
+                width: 100%;
+                height: auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 20px;
+                box-shadow: 10px 4px 20px rgba(0, 0, 0, 0.329);
+            }
+            .table{
+                margin-top: 1rem;
+                width: 100%;
+                height: auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 20px;
+                box-shadow: 10px 4px 20px rgba(0, 0, 0, 0.329);
+                table{
+                    width: 100%;
+                    thead{
+                        th{
+                            text-align: left;
+                            color: rgb(150, 150, 150);
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@mixin breakpoint($responsive){
+    @if $responsive == "md"{
+        @media(max-width:  map-get($break, "md")){
+            @content;
+        }
+    }@else if $responsive == "xxl"{
+        @media(max-width: map-get($break, "xxl")){
+            @content;
+        }
+    }@else if $responsive == "sm"{
+        @media (max-width : map-get($break, "sm")){
+            @content;
+        }
+    }@else if $responsive == "lg"{
+        @media (max-width : map-get($break, "lg")){
+            @content;
+        }
+    }@else if $responsive == "xl"{
+        @media (max-width : map-get($break, "xl")){
+            @content;
+        }
+    }
+}
