@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/sass/style.css">
+    <link rel="stylesheet" href="/assets/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar" id="sidebar">
+            <nav>
+                <div class="heading">
+                    <h3>Admin</h3>
+                </div>
+                <div class="navlink">
+                    <a href="" class="nav-item">
+                        <i class="fa fa-user"></i>
+                        Dashboard
+                    </a>
+                    <a href="" class="nav-item">
+                        <i class="fa fa-user"></i>
+                        Dashboard
+                    </a>
+                    <a href="create.html" class="nav-item">
+                        <i class="fa fa-user"></i>
+                        create
+                    </a>
+                    <a href="" class="nav-item">
+                        <i class="fa fa-user"></i>
+                        Dashboard
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="content-table">
+            <div class="head">
+                <input type="text" name="" id="search" placeholder="Recherche....">
+                <div class="icon">
+                    <i class="fa fa-bars id="menu-btn""></i>
+                </div>
+            </div>
+            <div class="titre">
+                <h3>Tableau</h3>
+                <a href="/touristeInsert" class="btn"><i class="fa fa-plus-circle"></i></a>
+            </div>
+            <div class="container">
+                <div class="table">
+                    <table>
+                        <thead>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Age</th>
+                            <th>Groupe</th>
+                            <th>Action</th>
+                            
+                        </thead>
+                        <tbody>
+                            {{ table_touristes }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/assets/js/script.js"></script>
+<script src="/assets/js/button.js"></script>
+</html>

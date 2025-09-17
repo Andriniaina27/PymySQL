@@ -1,4 +1,6 @@
 from models.touriste import Touriste
+from models.groupe import Groupe
+import urllib.parse
 
 
 class TouristeController(object):
@@ -9,7 +11,7 @@ class TouristeController(object):
         
         if dico:
             for key, value in dico.items():
-                placeholder = "{{ " + str(key) + "}}"
+                placeholder = "{{ " + str(key) + " }}"
                 html = html.replace(placeholder, str(value))
         
         await send({
@@ -22,11 +24,14 @@ class TouristeController(object):
             'type' : 'http.response.body',
             'body' : html.encode()
         })
+
+
+
     @staticmethod
     async def index(scope, receive, send):
         last = Touriste.lastId() + 1
         dics = {"numero" : last}
-        await __class__.__load(send, "views/index.html", dics)
+        await __class__.__load(send, "views/dashboard.html", dics)
     
 
     @staticmethod
@@ -49,6 +54,65 @@ class TouristeController(object):
         # })
     
     @staticmethod
-    async def opInsert():
-        pass
+    async def opInsert(scope, receive, send):
+        event = await receive()
+        body = event.get("body", b'')
+        dico = urllib.parse.parse_qs(body.decode())
+
+        nom    = dico.get("nom", b"")
+        prenom = dico.get("prenom", b"")
+        age    = dico.get("age", b"")
+        groupe = dico.get("groupe", b"")
+        Touriste.insert(nom, prenom, age, groupe)
+
+        await send({
+            "type": "http.response.start",
+            "status": 302,
+            "headers": [(b"Location", b"/listTouriste")]
+        })
+        await send({
+            "type": "http.response.body",
+            "body": b""
+        })
+
+    # @staticmethod
+    # async def opDelete(scope, receive, send, id):
+        
+    
+    @staticmethod
+    async def touristeInsert(scope, receive, send):
+        groupe = Groupe.getAll()
+        options = ""
+
+        for g in groupe:
+            options += f'<option value="{g["id_groupe"]}">{g["nomG"]}</option>'
+        context = {"options_groupe": options}
+        await __class__.__load(send, "views/create.html", context)
+    
+    @staticmethod
+    async def listTouriste(scope, receive, send):
+        touriste = Touriste.getAllJoin(
+            joins=[("groupe", "touriste.groupe_id = groupe.id_groupe")],
+            colonne=[("touriste.nom", "touriste.prenom", "touriste.age", "groupe.nomG as nomGrp", "touriste.id_touriste")]
+        )
+
+        list_Touriste = ""
+        for t in touriste:
+            list_Touriste += f"""
+                <tr>
+                    <td>{t['nom']}</td>
+                    <td>{t['prenom']}</td>
+                    <td>{t['age']} ans</td>
+                    <td>{t['nomG']}</td>
+                    <td width = 200>
+                        <a href='/opdelete/{t['id_touriste']}'>Supprimer</a>
+                        <a href='{t['id_touriste']}'>Modifier</a>
+                    </td>
+                </tr>
+            """
+        context = {"table_touristes" : list_Touriste}
+        await __class__.__load(send, "views/table.html", context)
+    
+    # async def deleteTouriste(scope, receive, send, id):
+    #     await __class__.__load(send,)
     

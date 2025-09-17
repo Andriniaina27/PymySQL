@@ -37,11 +37,15 @@ class Model():
             base = Database()
             base.cursor.execute(query)
             list = base.cursor.fetchall()
+            columns = [col[0] for col in base.cursor.description]
+        # Transformer chaque tuple en dictionnaire
+            list_dict = [dict(zip(columns, row)) for row in list]
         except Exception as e:
             print(e)
             return[{}]
         else:
-            return list
+            return list_dict
+        
         finally:
             cls.__close()
             
@@ -126,6 +130,47 @@ class Model():
         except Exception as e:
             print(e)
             return[{}]
+        else:
+            return result
+        finally:
+            cls.__close()
+        
+    @classmethod
+    def getAllJoin(cls, joins = None, conditions = None, colonne = None):
+        try:
+            table = cls.__name__.lower()
+            base_query = "SELECT "
+
+            # Colonnes
+            if colonne and isinstance(colonne, list) and all(isinstance(c, str) for c in colonne):
+                base_query += ", ".join(colonne)
+            else:
+                base_query += "*"
+
+            base_query += f" FROM {table} "
+
+            # Joins
+            if joins:
+                for join_table, join_condition in joins:
+                    base_query += f" LEFT JOIN {join_table} ON {join_condition} "
+
+            # Conditions WHERE
+            if conditions:
+                base_query += f" WHERE {conditions}"
+
+            # Exécution
+            base = Database()
+            base.cursor.execute(base_query)
+            rows = base.cursor.fetchall()
+
+            col_names = [col[0] for col in base.cursor.description]
+
+            # Retour sous forme de liste de dicts
+            result = [dict(zip(col_names, row)) for row in rows]
+
+        except Exception as e:
+            print(e)
+            return []
         else:
             return result
         finally:

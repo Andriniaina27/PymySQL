@@ -348,6 +348,13 @@ body {
   text-align: left;
   color: rgb(150, 150, 150);
 }
+.content-table .container .table table tbody tr td {
+  padding: 0.4rem 0;
+  border-top: 1px solid rgb(150, 150, 150);
+}
+.content-table .container .table table tbody tr td a {
+  color: rgb(150, 150, 150);
+}
 
 .content-create {
   width: 100%;
