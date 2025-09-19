@@ -141,7 +141,6 @@ class Model():
             table = cls.__name__.lower()
             base_query = "SELECT "
 
-            # Colonnes
             if colonne and isinstance(colonne, list) and all(isinstance(c, str) for c in colonne):
                 base_query += ", ".join(colonne)
             else:
@@ -149,23 +148,19 @@ class Model():
 
             base_query += f" FROM {table} "
 
-            # Joins
             if joins:
                 for join_table, join_condition in joins:
                     base_query += f" LEFT JOIN {join_table} ON {join_condition} "
 
-            # Conditions WHERE
             if conditions:
                 base_query += f" WHERE {conditions}"
 
-            # Exécution
             base = Database()
             base.cursor.execute(base_query)
             rows = base.cursor.fetchall()
 
             col_names = [col[0] for col in base.cursor.description]
 
-            # Retour sous forme de liste de dicts
             result = [dict(zip(col_names, row)) for row in rows]
 
         except Exception as e:

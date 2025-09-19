@@ -79,6 +79,15 @@
                                 a{
                                     color: rgb(150, 150, 150);
                                 }
+                                form{
+                                    button{
+                                        color: rgb(150, 150, 150);
+                                        background: none;
+                                        border: none;
+                                        font-size: 1rem;
+                                        cursor: pointer;
+                                    }
+                                }
                             }
                         }
                     }
