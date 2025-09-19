@@ -193,7 +193,6 @@ class TouristeController(object):
         age    = dico.get("age", [""])[0]
         groupe = dico.get("groupe", [""])[0]
 
-        # Tuple des valeurs
         values = (nom, prenom, age, groupe)
         Touriste.update(id, colonne , *values)
 
