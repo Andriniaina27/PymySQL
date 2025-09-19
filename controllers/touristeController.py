@@ -106,7 +106,13 @@ class TouristeController(object):
                             <input type="hidden" name="id" id="" value="{t['id_touriste']}">
                             <button type="submit">Supprimer</button>
                         </form>
-                        <a href='/update/{t['id_touriste']}'>Modifier</a>
+                        <button class="editBtn"
+                                data-id="{t['id_touriste']}"
+                                data-nom="{t['nom']}"
+                                data-prenom="{t['prenom']}"
+                                data-age="{t['age']}">
+                            Modifier
+                        </button>
                     </td>
                 </tr>
             """
@@ -145,33 +151,59 @@ class TouristeController(object):
                 "body": f"Erreur lors de la suppression : {e}".encode()
             })
     
-    async def updateTouriste(scope, receive, send, id):
-        id = int(id)
-        liste = Touriste.getById(id)
+    async def updateTouriste(scope, receive, send):
+        
         groupe = Groupe.getAll()
         options = ""
 
         for g in groupe:
             options += f'<option value="{g["id_groupe"]}">{g["nomG"]}</option>'
         
-        ajout = ""
-        ajout = f"""
-            <div class="input">
-                <label for="Nom">Nom</label>
-                <input type="text" name="nom" id="" value="{liste["nom"]}">
-            </div>
-            <div class="input">
-                <label for="Nom">Prenom</label>
-                <input type="text" name="prenom" id="" value="">
-            </div>
-            <div class="input">
-                <label for="Nom">Age</label>
-                <input type="number" name="age" id="" value="">
-            </div>
-        """
+        # ajout = ""
+        # ajout = f"""
+        #     <div class="input">
+        #         <label for="Nom">Nom</label>
+        #         <input type="text" name="nom" id="" value="{liste["nom"]}">
+        #     </div>
+        #     <div class="input">
+        #         <label for="Nom">Prenom</label>
+        #         <input type="text" name="prenom" id="" value="">
+        #     </div>
+        #     <div class="input">
+        #         <label for="Nom">Age</label>
+        #         <input type="number" name="age" id="" value="">
+        #     </div>
+        # """
         context = {
-            "ajout" : ajout,
             "options_groupe": options
         }
         await __class__.__load(send, "views/update.html", context)
+
+
+    @staticmethod
+    async def opUpdate(scope, receive, send):
+        event = await receive()
+        body = event.get("body", b'')
+        dico = urllib.parse.parse_qs(body.decode())
+        
+        colonne = ["nom", "prenom", "age", "groupe_id"]
+        id    = int(dico.get("id", ["0"])[0])
+        nom    = dico.get("nom", [""])[0]
+        prenom = dico.get("prenom", [""])[0]
+        age    = dico.get("age", [""])[0]
+        groupe = dico.get("groupe", [""])[0]
+
+        # Tuple des valeurs
+        values = (nom, prenom, age, groupe)
+        Touriste.update(id, colonne , *values)
+
+        await send({
+            "type": "http.response.start",
+            "status": 302,
+            "headers": [(b"Location", b"/listTouriste")]
+        })
+        await send({
+            "type": "http.response.body",
+            "body": b""
+        })
     

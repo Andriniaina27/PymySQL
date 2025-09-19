@@ -2,7 +2,7 @@ import os
 from rooter import Router
 from controllers.touristeController import TouristeController
 import uvicorn
-from test import Tour
+# from test import Tour
 
 routeur = Router()
 routeur.add("/", TouristeController.index)
@@ -10,7 +10,8 @@ routeur.add("/touristeInsert", TouristeController.touristeInsert)
 routeur.add("/listTouriste", TouristeController.listTouriste)
 routeur.add("/opinsert", TouristeController.opInsert)
 routeur.add("/opdelete", TouristeController.deleteTouriste)
-routeur.add("/update/{id}", TouristeController.updateTouriste)
+routeur.add("/update", TouristeController.updateTouriste)
+routeur.add("/opupdate", TouristeController.opUpdate)
 async def app(scope, receive, send):
     assert scope["type"] == 'http'
     path = scope["path"]

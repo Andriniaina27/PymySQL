@@ -67,4 +67,24 @@
 </body>
 <script src="/assets/js/script.js"></script>
 <script src="/assets/js/button.js"></script>
+<script>
+document.querySelectorAll('.editBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        // récupérer les données
+        const touristeData = {
+        id: btn.dataset.id,
+        nom: btn.dataset.nom,
+        prenom: btn.dataset.prenom,
+        age: btn.dataset.age,
+        groupe: btn.dataset.groupe
+        };
+
+        // stocker dans localStorage (ou sessionStorage)
+        localStorage.setItem('editTouriste', JSON.stringify(touristeData));
+
+        // rediriger vers la page du formulaire
+        window.location.href = "/update";  // ton fichier formulaire
+    });
+});
+</script>
 </html>

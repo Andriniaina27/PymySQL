@@ -43,8 +43,20 @@
             </div>
             <div class="container">
                 <div class="table">
-                    <form action="/opinsert" method="post">
-                        {{ ajout }}
+                    <form action="/opupdate" method="post">
+                        <div class="input">
+                            <input type="text" name="id" id="touristeId">
+                            <label for="Nom">Nom</label>
+                            <input type="text" name="nom" id="nom">
+                        </div>
+                        <div class="input">
+                            <label for="Nom">Prenom</label>
+                            <input type="text" name="prenom" id="prenom" value="">
+                        </div>
+                        <div class="input">
+                            <label for="Nom">Age</label>
+                            <input type="number" name="age" id="age" value="">
+                        </div>
                         <div class="input">
                             <label for="Groupe">Groupe</label>
                              <select name="groupe" id="">
@@ -53,7 +65,7 @@
                              </select>
                         </div>
                         <div class="input">
-                            <button type="submit">Enregistrer</button>
+                            <button type="submit">Modifier</button>
                         </div>
                     </form>
                 </div>
@@ -62,4 +74,13 @@
     </div>
 </body>
 <script src="/assets/js/toggle.js"></script>
+<script>
+  // récupérer les données depuis localStorage
+  const data = JSON.parse(localStorage.getItem('editTouriste') || "{}");
+
+  document.getElementById('touristeId').value = data.id || "";
+  document.getElementById('nom').value = data.nom || "";
+  document.getElementById('prenom').value = data.prenom || "";
+  document.getElementById('age').value = data.age || "";
+</script>
 </html>

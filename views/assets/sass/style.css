@@ -362,6 +362,13 @@ body {
   font-size: 1rem;
   cursor: pointer;
 }
+.content-table .container .table table tbody tr td .editBtn {
+  color: rgb(150, 150, 150);
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
 .content-create {
   width: 100%;
